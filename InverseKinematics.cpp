@@ -35,7 +35,11 @@ void Segment::Follow(glm::vec2 target)
 	angle = atan2(dir.y, dir.x) / deg2rad;
 	dir = glm::normalize(dir);
 	dir *= length;
-	a = target - dir;
+	const glm::vec2 t = target - dir;
+	if (!isnan(t.x))
+		a.x = t.x;
+	if (!isnan(t.y))
+		a.y = t.y;
 	Calculate();
 }
 
